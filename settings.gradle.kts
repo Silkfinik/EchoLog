@@ -29,3 +29,5 @@ include(":feature:map")
 include(":feature:echo_creation")
 include(":feature:echo_detail")
 include(":feature:journals")
+
+includeBuild("build-logic")
