@@ -1,6 +1,5 @@
 package com.silkfinik.ui.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,8 +12,9 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.silkfinik.ui.R
 import com.silkfinik.ui.theme.EchoLogTheme
 import com.silkfinik.ui.theme.ThemedPreview
 
@@ -69,6 +69,29 @@ fun SecondaryButton(
     }
 }
 
+@Composable
+fun HoldToSealButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary
+        ),
+        shape = MaterialTheme.shapes.medium
+    ) {
+        Text(
+            text = stringResource(R.string.hold_to_seal),
+            style = MaterialTheme.typography.labelLarge
+        )
+    }
+}
+
 @ThemedPreview
 @Composable
 private fun ButtonsPreview() {
@@ -81,6 +104,19 @@ private fun ButtonsPreview() {
             SecondaryButton(text = "Secondary Action", onClick = {})
             Spacer(Modifier.height(8.dp))
             SecondaryButton(text = "Secondary Disabled", onClick = {}, enabled = false)
+        }
+    }
+}
+
+
+@ThemedPreview
+@Composable
+private fun HoldToSealButtonPreview_Light() {
+    EchoLogTheme(useDarkTheme = false) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            HoldToSealButton(onClick = {})
+            Spacer(Modifier.height(8.dp))
+            HoldToSealButton(onClick = {}, enabled = false)
         }
     }
 }
