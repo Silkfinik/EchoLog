@@ -4,6 +4,7 @@ compileSdk = "36"
 minSdk = "24"
 targetSdk = "36"
 java = "17"
+javaxInject = "1"
 
 # Plugins
 agp = "8.13.0"
@@ -47,6 +48,7 @@ hilt-artifact = { module = "com.google.dagger:hilt-android-gradle-plugin", versi
 # Hilt (DI)
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
 
 # Jetpack Compose BOM
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
