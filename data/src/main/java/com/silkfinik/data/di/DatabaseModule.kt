@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.silkfinik.data.datasource.local.db.AppDatabase
+import com.silkfinik.data.datasource.local.db.EchoDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -6,6 +6,10 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+kotlin {
+    jvmToolchain(libs.versions.java.get().toInt())
+}
+
 android {
     namespace = "com.silkfinik.feature.map"
 
@@ -20,14 +24,6 @@ android {
     buildFeatures {
         compose = true
     }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
-        targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
-    }
-    kotlinOptions {
-        jvmTarget = libs.versions.java.get()
-    }
 }
 
 dependencies {
@@ -40,12 +36,16 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(platform(libs.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
