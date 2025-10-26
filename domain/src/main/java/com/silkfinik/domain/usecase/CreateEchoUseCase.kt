@@ -17,7 +17,7 @@ class CreateEchoUseCase @Inject constructor(
         longitude: Double,
         userId: String? = null
     ) {
-        if(text.isEmpty()) {
+        if(text.isBlank()) {
             throw EmptyTextException()
         }
 
