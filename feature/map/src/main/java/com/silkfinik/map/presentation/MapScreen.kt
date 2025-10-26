@@ -28,14 +28,15 @@ import com.silkfinik.ui.theme.EchoLogTheme
 
 @Composable
 fun MapScreen(
-    viewModel: MapViewModel = hiltViewModel()
+    viewModel: MapViewModel = hiltViewModel(),
+    onFabClick: () -> Unit
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     MapScreenContent(
         state = state,
-        onFabClick = {}
+        onFabClick = onFabClick
     )
 }
 
@@ -61,23 +62,24 @@ private fun MapScreenContent(
                 .padding(paddingValues),
             contentAlignment = Alignment.Center
         ) {
+            // TODO: Заменить на реальную начальную позицию пользователя
             val cameraPositionState = rememberCameraPositionState {
-                position = CameraPosition.fromLatLngZoom(LatLng(51.5, -0.12), 10f)
+                position = CameraPosition.fromLatLngZoom(LatLng(52.3676, 4.9041), 10f)
             }
 
             GoogleMap(
                 modifier = Modifier.fillMaxSize(),
                 cameraPositionState = cameraPositionState
             ) {
-                state.markers.forEach { markerUiModel ->
+                state.markers.forEach { marker ->
                     Marker(
                         state = MarkerState(
                             position = LatLng(
-                                markerUiModel.latitude,
-                                markerUiModel.longitude
+                                marker.latitude,
+                                marker.longitude
                             )
                         ),
-                        title = markerUiModel.id
+                        title = marker.id
                     )
                 }
             }
